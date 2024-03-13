@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        svg {
+            border: 1px solid #ddd;
+        }
+        rect.task {
+            fill: #3498db;
+            stroke: #2980b9;
+            stroke-width: 2;
+        }
+        text.task-label {
+            fill: #fff;
+            font-size: 12px;
+        }
+        line.dependency {
+            stroke: #e74c3c;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gantt Chart Generator</h1>
+    
+    <form method="post" action="generate.php">
+        <label for="taskName">Task Name:</label>
+        <input type="text" name="taskName[]" required>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" name="startDate[]" required>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" name="endDate[]" required>
+
+        <label for="dependency">Dependency (Optional):</label>
+        <select name="dependency[]">
+            <option value="">None</option>
+            <!-- Populate this dropdown with task names dynamically -->
+        </select>
+
+        <button type="button" onclick="addTask()">Add Task</button>
+        <button type="submit">Generate Gantt Chart</button>
+    </form>
+
+    <div id="chart-container">
+        <!-- The generated Gantt chart will be displayed here -->
+    </div>
+
+    <script>
+        function addTask() {
+            // Add a new set of input fields dynamically
+            const form = document.querySelector('form');
+            const newTaskFields = form.cloneNode(true);
+            form.parentNode.insertBefore(newTaskFields, form.nextSibling);
+        }
+    </script>
+</body>
+</html>
